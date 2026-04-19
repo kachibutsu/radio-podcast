@@ -8,9 +8,9 @@ import re
 import glob
 import subprocess
 import sys
+import time
 from datetime import datetime, timezone, timedelta
 from email.utils import formatdate
-import time
 
 # ============================================================
 #  設定（ここだけ書き換えてください）
@@ -27,16 +27,19 @@ CONFIG = {
     "episodes_dir": "episodes",       # 録音ファイルの保存先フォルダ
     "feed_file": "feed.xml",          # 生成するRSSファイル名
 
-    # --- 公開URL（GitHub PagesのURLなど）---
-    "base_url": "https://your-username.github.io/radio-podcast",
+    # --- 公開URL ---
+    "base_url": "https://kachibutsu.github.io/radio-podcast",
 
     # --- チャプター検出設定 ---
     "silence_db": -35,                # 無音とみなすdBレベル（-30〜-40が目安）
     "silence_duration": 0.5,          # 無音とみなす最短秒数
     "min_chapter_sec": 30,            # チャプターとして有効な最短秒数
 
-    # --- Git自動push（GitHub Pages使用時のみ True に）---
-    "auto_git_push": False,
+    # --- Git自動push ---
+    "auto_git_push": True,
+
+    # --- 古いファイルの自動削除（日数）---
+    "cleanup_days": 90,
 }
 
 # ============================================================
@@ -246,6 +249,23 @@ def git_push(episode_path, feed_path):
     log("push完了")
 
 # ============================================================
+#  Step 7: 古いファイルの自動削除
+# ============================================================
+
+def cleanup_old_files(days=90):
+    cutoff = time.time() - (days * 86400)
+    deleted = 0
+    for f in glob.glob(os.path.join(CONFIG["episodes_dir"], "*")):
+        if os.path.getmtime(f) < cutoff:
+            os.remove(f)
+            log(f"削除: {os.path.basename(f)}")
+            deleted += 1
+    if deleted:
+        log(f"{deleted}件のファイルを削除しました")
+    else:
+        log("削除対象なし")
+
+# ============================================================
 #  メイン
 # ============================================================
 
@@ -256,27 +276,36 @@ def main():
     ensure_dir("logs")
 
     now = datetime.now(JST).strftime("%Y%m%d_%H%M")
-    filename = f"{now}_{CONFIG['station']}.aac"
+    filename = f"{now}_{CONFIG['station']}.mp3"
     output_path = os.path.join(CONFIG["episodes_dir"], filename)
 
+    # Step 1: 録音
     record(output_path)
 
+    # Step 2〜3: 無音検出 → チャプター生成
     total_sec = get_duration_sec(output_path)
     silence_ends = detect_silences(output_path)
     chapters = build_chapters(silence_ends, total_sec)
 
+    # Step 4: チャプター埋め込み
     if chapters:
         embed_chapters(output_path, chapters)
 
+    # Step 5: RSS生成
     feed_path = generate_rss(CONFIG["episodes_dir"])
 
+    # Step 6: Git push
     if CONFIG["auto_git_push"]:
         git_push(output_path, feed_path)
+
+    # Step 7: 古いファイル削除
+    cleanup_old_files(days=CONFIG["cleanup_days"])
 
     log("=== パイプライン完了 ===")
     log(f"録音ファイル : {output_path}")
     log(f"チャプター数 : {len(chapters)}")
     log(f"RSSフィード  : {feed_path}")
+
 
 if __name__ == "__main__":
     main()
