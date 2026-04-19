@@ -4,24 +4,38 @@
   xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>マイラジオ録音</title>
-    <link>https://kachibutsu.github.io/radio-podcast</link>
+    <link>https://your-username.github.io/radio-podcast</link>
     <description>自動録音ポッドキャスト</description>
     <language>ja</language>
-    <atom:link href="https://kachibutsu.github.io/radio-podcast/feed.xml" rel="self" type="application/rss+xml"/>
+    <atom:link href="https://your-username.github.io/radio-podcast/feed.xml" rel="self" type="application/rss+xml"/>
     
     <item>
-      <title>test</title>
-      <enclosure url="https://kachibutsu.github.io/radio-podcast/episodes/test.aac" length="210181" type="audio/mp4"/>
-      <guid isPermaLink="false">https://kachibutsu.github.io/radio-podcast/episodes/test.aac</guid>
-      <pubDate>Sun, 19 Apr 2026 01:34:34 -0000</pubDate>
-      <itunes:duration>1800</itunes:duration>
+      <title>20260419_1333_TBS_chap</title>
+      <enclosure url="https://your-username.github.io/radio-podcast/episodes/20260419_1333_TBS_chap.mp3" length="0" type="audio/mpeg"/>
+      <guid isPermaLink="false">https://your-username.github.io/radio-podcast/episodes/20260419_1333_TBS_chap.mp3</guid>
+      <pubDate>Sun, 19 Apr 2026 08:34:28 -0000</pubDate>
+      <itunes:duration>14430</itunes:duration>
+    </item>
+    <item>
+      <title>20260419_1333_TBS</title>
+      <enclosure url="https://your-username.github.io/radio-podcast/episodes/20260419_1333_TBS.mp3" length="86790947" type="audio/mpeg"/>
+      <guid isPermaLink="false">https://your-username.github.io/radio-podcast/episodes/20260419_1333_TBS.mp3</guid>
+      <pubDate>Sun, 19 Apr 2026 08:34:03 -0000</pubDate>
+      <itunes:duration>14430</itunes:duration>
     </item>
     <item>
       <title>20260419_1046_TBS</title>
-      <enclosure url="https://kachibutsu.github.io/radio-podcast/episodes/20260419_1046_TBS.mp3" length="10799474" type="audio/mp4"/>
-      <guid isPermaLink="false">https://kachibutsu.github.io/radio-podcast/episodes/20260419_1046_TBS.mp3</guid>
+      <enclosure url="https://your-username.github.io/radio-podcast/episodes/20260419_1046_TBS.mp3" length="26867997" type="audio/mpeg"/>
+      <guid isPermaLink="false">https://your-username.github.io/radio-podcast/episodes/20260419_1046_TBS.mp3</guid>
+      <pubDate>Sun, 19 Apr 2026 03:13:00 -0000</pubDate>
+      <itunes:duration>14430</itunes:duration>
+    </item>
+    <item>
+      <title>20260419_1046_TBS</title>
+      <enclosure url="https://your-username.github.io/radio-podcast/episodes/20260419_1046_TBS.aac" length="10799474" type="audio/mp4"/>
+      <guid isPermaLink="false">https://your-username.github.io/radio-podcast/episodes/20260419_1046_TBS.aac</guid>
       <pubDate>Sun, 19 Apr 2026 02:21:08 -0000</pubDate>
-      <itunes:duration>1800</itunes:duration>
+      <itunes:duration>14430</itunes:duration>
     </item>
   </channel>
 </rss>
