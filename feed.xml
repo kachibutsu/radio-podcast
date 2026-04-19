@@ -4,7 +4,7 @@
   xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>マイラジオ録音</title>
-    <link>https://your-username.github.io/radio-podcast</link>
+    <link>https://kachibutsu.github.io/radio-podcast</link>
     <description>自動録音ポッドキャスト</description>
     <language>ja</language>
     <atom:link href="https://your-username.github.io/radio-podcast/feed.xml" rel="self" type="application/rss+xml"/>
