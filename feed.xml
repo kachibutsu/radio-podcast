@@ -7,19 +7,19 @@
     <link>https://kachibutsu.github.io/radio-podcast</link>
     <description>自動録音ポッドキャスト</description>
     <language>ja</language>
-    <atom:link href="https://your-username.github.io/radio-podcast/feed.xml" rel="self" type="application/rss+xml"/>
+    <atom:link href="https://kachibutsu.github.io/radio-podcast/feed.xml" rel="self" type="application/rss+xml"/>
     
     <item>
       <title>test</title>
-      <enclosure url="https://your-username.github.io/radio-podcast/episodes/test.aac" length="210181" type="audio/mp4"/>
-      <guid isPermaLink="false">https://your-username.github.io/radio-podcast/episodes/test.aac</guid>
+      <enclosure url="https://kachibutsu.github.io/radio-podcast/episodes/test.aac" length="210181" type="audio/mp4"/>
+      <guid isPermaLink="false">https://kachibutsu.github.io/radio-podcast/episodes/test.aac</guid>
       <pubDate>Sun, 19 Apr 2026 01:34:34 -0000</pubDate>
       <itunes:duration>1800</itunes:duration>
     </item>
     <item>
       <title>20260419_1046_TBS</title>
-      <enclosure url="https://your-username.github.io/radio-podcast/episodes/20260419_1046_TBS.aac" length="10799474" type="audio/mp4"/>
-      <guid isPermaLink="false">https://your-username.github.io/radio-podcast/episodes/20260419_1046_TBS.aac</guid>
+      <enclosure url="https://kachibutsu.github.io/radio-podcast/episodes/20260419_1046_TBS.aac" length="10799474" type="audio/mp4"/>
+      <guid isPermaLink="false">https://kachibutsu.github.io/radio-podcast/episodes/20260419_1046_TBS.aac</guid>
       <pubDate>Sun, 19 Apr 2026 02:21:08 -0000</pubDate>
       <itunes:duration>1800</itunes:duration>
     </item>
