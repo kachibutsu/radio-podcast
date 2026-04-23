@@ -10,6 +10,20 @@
     <atom:link href="https://kachibutsu.github.io/radio-podcast/feed.xml" rel="self" type="application/rss+xml"/>
     
     <item>
+      <title>20260424_0059_TBS_chap</title>
+      <enclosure url="https://kachibutsu.github.io/radio-podcast/episodes/20260424_0059_TBS_chap.mp3" length="0" type="audio/mpeg"/>
+      <guid isPermaLink="false">https://kachibutsu.github.io/radio-podcast/episodes/20260424_0059_TBS_chap.mp3</guid>
+      <pubDate>Thu, 23 Apr 2026 17:59:32 -0000</pubDate>
+      <itunes:duration>7230</itunes:duration>
+    </item>
+    <item>
+      <title>20260424_0059_TBS</title>
+      <enclosure url="https://kachibutsu.github.io/radio-podcast/episodes/20260424_0059_TBS.mp3" length="43485888" type="audio/mpeg"/>
+      <guid isPermaLink="false">https://kachibutsu.github.io/radio-podcast/episodes/20260424_0059_TBS.mp3</guid>
+      <pubDate>Thu, 23 Apr 2026 17:59:21 -0000</pubDate>
+      <itunes:duration>7230</itunes:duration>
+    </item>
+    <item>
       <title>20260423_2159_FMJ_chap</title>
       <enclosure url="https://kachibutsu.github.io/radio-podcast/episodes/20260423_2159_FMJ_chap.mp3" length="0" type="audio/mpeg"/>
       <guid isPermaLink="false">https://kachibutsu.github.io/radio-podcast/episodes/20260423_2159_FMJ_chap.mp3</guid>
