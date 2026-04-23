@@ -202,7 +202,7 @@ def generate_rss(episodes_dir):
     log("RSSフィード生成中...")
 
     ep_files = sorted(
-        glob.glob(os.path.join(episodes_dir, "*.aac")) +
+        cd C:\radio-podcast
         glob.glob(os.path.join(episodes_dir, "*.mp3")) +
         glob.glob(os.path.join(episodes_dir, "*.m4a")),
         reverse=True
