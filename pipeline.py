@@ -33,7 +33,7 @@ CONFIG = {
     # --- チャプター検出設定 ---
     "silence_db": -35,                # 無音とみなすdBレベル（-30〜-40が目安）
     "silence_duration": 0.5,          # 無音とみなす最短秒数
-    "min_chapter_sec": 30,            # チャプターとして有効な最短秒数
+    "min_chapter_sec": 300,            # チャプターとして有効な最短秒数
 
     # --- Git自動push ---
     "auto_git_push": True,
@@ -237,7 +237,7 @@ def generate_rss(episodes_dir):
 def git_push(episode_path, feed_path):
     log("GitHubにpush中...")
     cmds = [
-        ["git", "add", episode_path, feed_path],
+        ["git", "add", "."],
         ["git", "commit", "-m", f"new episode: {os.path.basename(episode_path)}"],
         ["git", "push"],
     ]
