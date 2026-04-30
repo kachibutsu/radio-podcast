@@ -1,5 +1,5 @@
 """
-ラジオ自動録音 → チャプター生成 → ポッドキャストRSS配信 パイプライン
+ラジオ自動録音 → ポッドキャストRSS配信 パイプライン
 （streamlink版）
 """
 
@@ -18,22 +18,23 @@ from email.utils import formatdate
 
 CONFIG = {
     # --- 録音設定 ---
-    "station": "TBS",                 # radiko放送局ID
-    "duration": 1800,                 # 録音秒数（1800 = 30分）
-    "podcast_title": "マイラジオ録音", # ポッドキャストのタイトル
+    "station": "TBS",
+    "duration": 1800,
+    "program_name": "",               # 番組名（空の場合は局名を使用）
+    "podcast_title": "マイラジオ録音",
     "podcast_desc": "自動録音ポッドキャスト",
 
     # --- ファイルパス ---
-    "episodes_dir": "episodes",       # 録音ファイルの保存先フォルダ
-    "feed_file": "feed.xml",          # 生成するRSSファイル名
+    "episodes_dir": "episodes",
+    "feed_file": "feed.xml",
 
     # --- 公開URL ---
     "base_url": "https://kachibutsu.github.io/radio-podcast",
 
     # --- チャプター検出設定 ---
-    "silence_db": -35,                # 無音とみなすdBレベル（-30〜-40が目安）
-    "silence_duration": 0.5,          # 無音とみなす最短秒数
-    "min_chapter_sec": 300,            # チャプターとして有効な最短秒数
+    "silence_db": -35,
+    "silence_duration": 0.5,
+    "min_chapter_sec": 300,
 
     # --- Git自動push ---
     "auto_git_push": True,
@@ -115,15 +116,10 @@ def build_chapters(silence_ends, total_sec):
             prev = t
 
     log(f"チャプター生成: {len(chapters)}件")
-    for ch in chapters:
-        s = ch["start_ms"] // 1000
-        e = ch["end_ms"] // 1000
-        log(f"  [{ch['index']:02d}] {s//60:02d}:{s%60:02d} 〜 {e//60:02d}:{e%60:02d}  {ch['title']}")
-
     return chapters
 
 # ============================================================
-#  Step 4: チャプターをファイルに埋め込む
+#  Step 4: RSSフィード生成
 # ============================================================
 
 def get_duration_sec(audio_path):
@@ -136,49 +132,6 @@ def get_duration_sec(audio_path):
         return float(result.stdout.strip())
     except:
         return CONFIG["duration"]
-
-def embed_chapters(src_path, chapters):
-    log("チャプターをファイルに埋め込み中...")
-
-    meta_path = src_path + ".meta.txt"
-    ext = os.path.splitext(src_path)[1]
-    out_path = src_path.replace(ext, f"_chap{ext}")
-
-    lines = [";FFMETADATA1\n"]
-    for ch in chapters:
-        lines += [
-            "[CHAPTER]\n",
-            "TIMEBASE=1/1000\n",
-            f"START={ch['start_ms']}\n",
-            f"END={ch['end_ms']}\n",
-            f"title={ch['title']}\n",
-            "\n",
-        ]
-    with open(meta_path, "w", encoding="utf-8") as f:
-        f.writelines(lines)
-
-    cmd = [
-        "ffmpeg", "-y",
-        "-i", src_path,
-        "-i", meta_path,
-        "-map_metadata", "1",
-        "-codec", "copy",
-        out_path,
-    ]
-    result = subprocess.run(cmd, capture_output=True)
-    os.remove(meta_path)
-
-    if result.returncode != 0:
-        log("警告: チャプター埋め込み失敗。元ファイルをそのまま使用します。")
-        return src_path
-
-    os.replace(out_path, src_path)
-    log("チャプター埋め込み完了")
-    return src_path
-
-# ============================================================
-#  Step 5: RSSフィード生成
-# ============================================================
 
 def build_rss_item(ep_path):
     filename = os.path.basename(ep_path)
@@ -202,9 +155,9 @@ def generate_rss(episodes_dir):
     log("RSSフィード生成中...")
 
     ep_files = sorted(
-        cd C:\radio-podcast
-        glob.glob(os.path.join(episodes_dir, "*.mp3")) +
-        glob.glob(os.path.join(episodes_dir, "*.m4a")),
+        [f for f in glob.glob(os.path.join(episodes_dir, "*.mp3")) if "_chap" not in f] +
+        [f for f in glob.glob(os.path.join(episodes_dir, "*.aac")) if "_chap" not in f] +
+        [f for f in glob.glob(os.path.join(episodes_dir, "*.m4a")) if "_chap" not in f],
         reverse=True
     )[:20]
 
@@ -231,7 +184,7 @@ def generate_rss(episodes_dir):
     return feed_path
 
 # ============================================================
-#  Step 6: Git push（オプション）
+#  Step 5: Git push
 # ============================================================
 
 def git_push(episode_path, feed_path):
@@ -249,7 +202,7 @@ def git_push(episode_path, feed_path):
     log("push完了")
 
 # ============================================================
-#  Step 7: 古いファイルの自動削除
+#  Step 6: 古いファイルの自動削除
 # ============================================================
 
 def cleanup_old_files(days=90):
@@ -275,35 +228,26 @@ def main():
     ensure_dir(CONFIG["episodes_dir"])
     ensure_dir("logs")
 
-    now = datetime.now(JST).strftime("%Y%m%d_%H%M")
-    filename = f"{now}_{CONFIG['station']}.mp3"
+    now = datetime.now(JST).strftime("%Y%m%d")
+    name = CONFIG["program_name"] if CONFIG["program_name"] else CONFIG["station"]
+    filename = f"{now}_{name}.mp3"
     output_path = os.path.join(CONFIG["episodes_dir"], filename)
 
     # Step 1: 録音
     record(output_path)
 
-    # Step 2〜3: 無音検出 → チャプター生成
-    total_sec = get_duration_sec(output_path)
-    silence_ends = detect_silences(output_path)
-    chapters = build_chapters(silence_ends, total_sec)
-
-    # Step 4: チャプター埋め込み
-    if chapters:
-        embed_chapters(output_path, chapters)
-
-    # Step 5: RSS生成
+    # Step 2: RSS生成
     feed_path = generate_rss(CONFIG["episodes_dir"])
 
-    # Step 6: Git push
+    # Step 3: Git push
     if CONFIG["auto_git_push"]:
         git_push(output_path, feed_path)
 
-    # Step 7: 古いファイル削除
+    # Step 4: 古いファイル削除
     cleanup_old_files(days=CONFIG["cleanup_days"])
 
     log("=== パイプライン完了 ===")
     log(f"録音ファイル : {output_path}")
-    log(f"チャプター数 : {len(chapters)}")
     log(f"RSSフィード  : {feed_path}")
 
 

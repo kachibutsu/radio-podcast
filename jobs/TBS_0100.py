@@ -5,4 +5,5 @@ import pipeline
 pipeline.CONFIG["station"] = "TBS"
 pipeline.CONFIG["duration"] = 7230
 pipeline.CONFIG["auto_git_push"] = True
+pipeline.CONFIG["program_name"] = "ジャンク"
 pipeline.main()
