@@ -14,49 +14,56 @@
       <enclosure url="https://kachibutsu.github.io/radio-podcast/episodes/20260502_ジャンク.mp3" length="43515135" type="audio/mpeg"/>
       <guid isPermaLink="false">https://kachibutsu.github.io/radio-podcast/episodes/20260502_ジャンク.mp3</guid>
       <pubDate>Fri, 01 May 2026 17:59:22 -0000</pubDate>
-      <itunes:duration>7230</itunes:duration>
+      <itunes:duration>1830</itunes:duration>
+    </item>
+    <item>
+      <title>20260502_あったかタイム</title>
+      <enclosure url="https://kachibutsu.github.io/radio-podcast/episodes/20260502_あったかタイム.mp3" length="11035951" type="audio/mpeg"/>
+      <guid isPermaLink="false">https://kachibutsu.github.io/radio-podcast/episodes/20260502_あったかタイム.mp3</guid>
+      <pubDate>Sat, 02 May 2026 09:59:24 -0000</pubDate>
+      <itunes:duration>1830</itunes:duration>
     </item>
     <item>
       <title>20260501_ジャンク</title>
       <enclosure url="https://kachibutsu.github.io/radio-podcast/episodes/20260501_ジャンク.mp3" length="43486328" type="audio/mpeg"/>
       <guid isPermaLink="false">https://kachibutsu.github.io/radio-podcast/episodes/20260501_ジャンク.mp3</guid>
       <pubDate>Thu, 30 Apr 2026 17:59:15 -0000</pubDate>
-      <itunes:duration>7230</itunes:duration>
+      <itunes:duration>1830</itunes:duration>
     </item>
     <item>
       <title>20260430_ジャンク</title>
       <enclosure url="https://kachibutsu.github.io/radio-podcast/episodes/20260430_ジャンク.mp3" length="271165" type="audio/mpeg"/>
       <guid isPermaLink="false">https://kachibutsu.github.io/radio-podcast/episodes/20260430_ジャンク.mp3</guid>
       <pubDate>Thu, 30 Apr 2026 07:06:18 -0000</pubDate>
-      <itunes:duration>7230</itunes:duration>
+      <itunes:duration>1830</itunes:duration>
     </item>
     <item>
       <title>20260430_GURUGURU</title>
       <enclosure url="https://kachibutsu.github.io/radio-podcast/episodes/20260430_GURUGURU.mp3" length="1533597" type="audio/mpeg"/>
       <guid isPermaLink="false">https://kachibutsu.github.io/radio-podcast/episodes/20260430_GURUGURU.mp3</guid>
       <pubDate>Thu, 30 Apr 2026 13:03:37 -0000</pubDate>
-      <itunes:duration>7230</itunes:duration>
+      <itunes:duration>1830</itunes:duration>
     </item>
     <item>
       <title>20260424_0059_TBS</title>
       <enclosure url="https://kachibutsu.github.io/radio-podcast/episodes/20260424_0059_TBS.mp3" length="43485888" type="audio/mpeg"/>
       <guid isPermaLink="false">https://kachibutsu.github.io/radio-podcast/episodes/20260424_0059_TBS.mp3</guid>
       <pubDate>Thu, 23 Apr 2026 17:59:21 -0000</pubDate>
-      <itunes:duration>7230</itunes:duration>
+      <itunes:duration>1830</itunes:duration>
     </item>
     <item>
       <title>20260423_2159_FMJ</title>
       <enclosure url="https://kachibutsu.github.io/radio-podcast/episodes/20260423_2159_FMJ.mp3" length="36177605" type="audio/mpeg"/>
       <guid isPermaLink="false">https://kachibutsu.github.io/radio-podcast/episodes/20260423_2159_FMJ.mp3</guid>
       <pubDate>Thu, 23 Apr 2026 14:39:36 -0000</pubDate>
-      <itunes:duration>7230</itunes:duration>
+      <itunes:duration>1830</itunes:duration>
     </item>
     <item>
       <title>20260419_1333_TBS</title>
       <enclosure url="https://kachibutsu.github.io/radio-podcast/episodes/20260419_1333_TBS.mp3" length="86790947" type="audio/mpeg"/>
       <guid isPermaLink="false">https://kachibutsu.github.io/radio-podcast/episodes/20260419_1333_TBS.mp3</guid>
       <pubDate>Sun, 19 Apr 2026 08:34:03 -0000</pubDate>
-      <itunes:duration>7230</itunes:duration>
+      <itunes:duration>1830</itunes:duration>
     </item>
   </channel>
 </rss>
