@@ -64,7 +64,14 @@ JST = timezone(timedelta(hours=9))
 
 def log(msg):
     ts = datetime.now(JST).strftime("%H:%M:%S")
-    print(f"[{ts}] {msg}", flush=True)
+    line = f"[{ts}] {msg}"
+    print(line, flush=True)
+    try:
+        log_path = os.path.join("logs", datetime.now(JST).strftime("%Y%m%d") + ".log")
+        with open(log_path, "a", encoding="utf-8") as f:
+            f.write(line + "\n")
+    except Exception:
+        pass  # ログ書き込み自体の失敗でパイプラインを止めない
 
 def ensure_dir(path):
     os.makedirs(path, exist_ok=True)
@@ -195,19 +202,28 @@ def generate_rss(episodes_dir):
 #  Step 4: Git push
 # ============================================================
 
-def git_push(episode_path, feed_path):
+def git_push(episode_path, feed_path, max_retries=3, retry_wait=30):
     log("GitHubにpush中...")
-    cmds = [
+    add_commit_cmds = [
         ["git", "add", "."],
         ["git", "commit", "-m", f"new episode: {os.path.basename(episode_path)}"],
-        ["git", "push"],
     ]
-    for cmd in cmds:
+    for cmd in add_commit_cmds:
         result = subprocess.run(cmd)
         if result.returncode != 0:
             log(f"警告: gitコマンド失敗: {' '.join(cmd)}")
             return
-    log("push完了")
+
+    for attempt in range(1, max_retries + 1):
+        result = subprocess.run(["git", "push"])
+        if result.returncode == 0:
+            log("push完了")
+            return
+        log(f"警告: git push失敗（試行 {attempt}/{max_retries}）")
+        if attempt < max_retries:
+            time.sleep(retry_wait)
+
+    log("エラー: git pushが全て失敗しました。手動でpushしてください。")
 
 # ============================================================
 #  Step 5: 古いファイルの自動整理
