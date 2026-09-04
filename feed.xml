@@ -10,6 +10,13 @@
     <atom:link href="https://kachibutsu.github.io/radio-podcast/feed.xml" rel="self" type="application/rss+xml"/>
     
     <item>
+      <title>20260905_ジャンク</title>
+      <enclosure url="https://kachibutsu.github.io/radio-podcast/episodes/20260905_ジャンク.aac" length="44566355" type="audio/mp4"/>
+      <guid isPermaLink="false">https://kachibutsu.github.io/radio-podcast/episodes/20260905_ジャンク.aac</guid>
+      <pubDate>Fri, 04 Sep 2026 17:59:21 -0000</pubDate>
+      <itunes:duration>7230</itunes:duration>
+    </item>
+    <item>
       <title>20260904_ジャンク</title>
       <enclosure url="https://kachibutsu.github.io/radio-podcast/episodes/20260904_ジャンク.aac" length="44566351" type="audio/mp4"/>
       <guid isPermaLink="false">https://kachibutsu.github.io/radio-podcast/episodes/20260904_ジャンク.aac</guid>
@@ -140,13 +147,6 @@
       <enclosure url="https://kachibutsu.github.io/radio-podcast/episodes/20260807_ジャンク.aac" length="44566385" type="audio/mp4"/>
       <guid isPermaLink="false">https://kachibutsu.github.io/radio-podcast/episodes/20260807_ジャンク.aac</guid>
       <pubDate>Thu, 06 Aug 2026 17:59:21 -0000</pubDate>
-      <itunes:duration>7230</itunes:duration>
-    </item>
-    <item>
-      <title>20260806_GURUGURU</title>
-      <enclosure url="https://kachibutsu.github.io/radio-podcast/episodes/20260806_GURUGURU.aac" length="29773602" type="audio/mp4"/>
-      <guid isPermaLink="false">https://kachibutsu.github.io/radio-podcast/episodes/20260806_GURUGURU.aac</guid>
-      <pubDate>Thu, 06 Aug 2026 14:19:59 -0000</pubDate>
       <itunes:duration>7230</itunes:duration>
     </item>
   </channel>
