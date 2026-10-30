@@ -10,6 +10,13 @@
     <atom:link href="https://kachibutsu.github.io/radio-podcast/feed.xml" rel="self" type="application/rss+xml"/>
     
     <item>
+      <title>20261031_ジャンク</title>
+      <enclosure url="https://kachibutsu.github.io/radio-podcast/episodes/20261031_ジャンク.aac" length="44566483" type="audio/mp4"/>
+      <guid isPermaLink="false">https://kachibutsu.github.io/radio-podcast/episodes/20261031_ジャンク.aac</guid>
+      <pubDate>Fri, 30 Oct 2026 17:59:23 -0000</pubDate>
+      <itunes:duration>7230</itunes:duration>
+    </item>
+    <item>
       <title>20261030_ジャンク</title>
       <enclosure url="https://kachibutsu.github.io/radio-podcast/episodes/20261030_ジャンク.aac" length="44566421" type="audio/mp4"/>
       <guid isPermaLink="false">https://kachibutsu.github.io/radio-podcast/episodes/20261030_ジャンク.aac</guid>
